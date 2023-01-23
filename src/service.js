@@ -7,6 +7,14 @@ function geraStringAleatoria(tamanho) {
   return stringAleatoria;
 }
 
+function validateEmail(email) {
+  const re = /\S+@\S+\.\S+/;
+  return re.test(email);
+}
+
 console.log(geraStringAleatoria(16));
 
-module.exports = geraStringAleatoria;
+module.exports = {
+  geraStringAleatoria,
+  validateEmail,
+};

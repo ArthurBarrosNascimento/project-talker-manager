@@ -1,6 +1,6 @@
 const express = require('express');
 const talke = require('./talker.json');
-const geraToken = require('./service');
+const { geraStringAleatoria, validateEmail } = require('./service');
 
 const app = express();
 app.use(express.json());
@@ -37,10 +37,20 @@ app.get('/talker/:id', (req, res) => {// filtra array pelo Id
 
 app.post('/login', (req, res) => {
   const result = req.body;
+  console.log(result);
   
   if (Object.keys(result).length === 0) return res.status(401).end();
 
-  const toke = geraToken(16);
+  if (result.email === '' || result.hasOwnProperty('email') === false) res.status(400).json({ message: "O campo \"email\" é obrigatório"})//email vazio ou não seja passado
+
+  if (!validateEmail(result.email)) res.status(400).json({ message: 'O \"email\" deve ter o formato \"email@email.com\"'})//email não valido
+
+  if (result.password === '' || result.hasOwnProperty('password') === false) res.status(400).json({ message: "O campo \"password\" é obrigatório"})//password vazio ou não seja passado
+
+  if (result.password.length < 6) res.status(400).json({ message: 'O \"password\" deve ter pelo menos 6 caracteres'})//password seja menor que 6
+
+
+  const toke = geraStringAleatoria(16);
   return res.status(200).json({ token: toke});
   
 });
