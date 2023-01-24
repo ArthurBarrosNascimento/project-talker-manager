@@ -12,7 +12,7 @@ function validationEmail(email) {
   return re.test(email);
 }
 
-function validateDate(dateString) {
+function validationDate(dateString) {
   const dateRegex = /^\d{2}\/\d{2}\/\d{4}$/;
   return dateRegex.test(dateString);
 }
@@ -20,5 +20,5 @@ function validateDate(dateString) {
 module.exports = {
   geraToken,
   validationEmail,
-  validateDate,
+  validationDate,
 };
