@@ -57,4 +57,29 @@ router.post('/talker',
   res.status(201).json(request);
 }); 
 
+router.delete('/talker/:id', validationAuthenticationHeader,
+validationLengthAuthentication, async (req, res) => {
+  const { id } = req.params;
+  const talkersFile = await readFile();
+  const newTalkersFile = talkersFile.filter((talker) => talker.id !== Number(id));
+  await writeFile(newTalkersFile);
+  res.status(204).end();
+});
+
+// router.put('/talker/:id',
+// validationAuthenticationHeader,
+//   validationLengthAuthentication,
+//   validationPropertyName,
+//   validationLengthName,
+//   validationPropertyAge,
+//   validationLengthAge,
+//   valodationPropertyTalk,
+//   validationPropertyWatchedAt,
+//   validationFormatWatchedAt,
+//   validationPropertyRate,
+//   validationRate,
+//   (req, res) => {
+
+// });
+
 module.exports = router;
