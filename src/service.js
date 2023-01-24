@@ -12,9 +12,15 @@ function validateEmail(email) {
   return re.test(email);
 }
 
+function validateDate(dateString) {
+  const dateRegex = /^\d{2}\/\d{2}\/\d{4}$/;
+  return dateRegex.test(dateString);
+}
+
 console.log(geraStringAleatoria(16));
 
 module.exports = {
   geraStringAleatoria,
   validateEmail,
+  validateDate,
 };
