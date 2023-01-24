@@ -1,20 +1,20 @@
 const express = require('express');
 const {
-  validatePropertyEmail,
-  validateTypeEmail,
-  validatePropertyPassword,
-  validateLengthPassword,
-} = require('../middleware/validateLogin');
+  validationPropertyEmail,
+  validationTypeEmail,
+  validationPropertyPassword,
+  validationLengthPassword,
+} = require('../middleware/validationLogin');
 const { geraToken } = require('../service');
 
 const router = express.Router();
 router.use(express.json());
 
 router.post('/login',
-  validatePropertyEmail,
-  validateTypeEmail,
-  validatePropertyPassword,
-  validateLengthPassword, (_req, res) => {
+  validationPropertyEmail,
+  validationTypeEmail,
+  validationPropertyPassword,
+  validationLengthPassword, (_req, res) => {
   const tokenGerado = geraToken(16);
   return res.status(200).json({ token: tokenGerado });  
 });

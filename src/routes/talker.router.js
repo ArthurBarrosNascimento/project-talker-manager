@@ -21,6 +21,7 @@ router.get('/talker/:id', async (req, res) => {
 router.post('/talker', (req, res) => {
   const request = req.body;
   console.log(request);
+  console.log(req.header('authorization'));
   res.status(201).json(request);
 }); 
 

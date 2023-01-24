@@ -7,7 +7,7 @@ function geraToken(tamanho) {
   return stringAleatoria;
 }
 
-function validateEmail(email) {
+function validationEmail(email) {
   const re = /\S+@\S+\.\S+/;
   return re.test(email);
 }
@@ -19,6 +19,6 @@ function validateDate(dateString) {
 
 module.exports = {
   geraToken,
-  validateEmail,
+  validationEmail,
   validateDate,
 };
