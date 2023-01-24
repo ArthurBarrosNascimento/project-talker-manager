@@ -2,6 +2,7 @@ const express = require('express');
 const readFile = require('../readFile');
 
 const router = express.Router();
+router.use(express.json());
 
 router.get('/talker', async (_req, res) => {
   const talkers = await readFile();
@@ -16,6 +17,12 @@ router.get('/talker/:id', async (req, res) => {
 
    return res.status(200).json(request);
 });
+
+router.post('/talker', (req, res) => {
+  const request = req.body;
+  console.log(request);
+  res.status(201).json(request);
+}); 
 
 // app.post('/talker', async (req, res) => {
 //   const request = req.body;

@@ -1,4 +1,4 @@
-function geraStringAleatoria(tamanho) {
+function geraToken(tamanho) {
   let stringAleatoria = '';
   const caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
   for (let i = 0; i < tamanho; i += 1) {
@@ -17,10 +17,8 @@ function validateDate(dateString) {
   return dateRegex.test(dateString);
 }
 
-console.log(geraStringAleatoria(16));
-
 module.exports = {
-  geraStringAleatoria,
+  geraToken,
   validateEmail,
   validateDate,
 };
