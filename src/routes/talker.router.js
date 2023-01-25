@@ -66,20 +66,31 @@ validationLengthAuthentication, async (req, res) => {
   res.status(204).end();
 });
 
-// router.put('/talker/:id',
-// validationAuthenticationHeader,
-//   validationLengthAuthentication,
-//   validationPropertyName,
-//   validationLengthName,
-//   validationPropertyAge,
-//   validationLengthAge,
-//   valodationPropertyTalk,
-//   validationPropertyWatchedAt,
-//   validationFormatWatchedAt,
-//   validationPropertyRate,
-//   validationRate,
-//   (req, res) => {
+router.put('/talker/:id',
+validationAuthenticationHeader,
+  validationLengthAuthentication,
+  validationPropertyName,
+  validationLengthName,
+  validationPropertyAge,
+  validationLengthAge,
+  valodationPropertyTalk,
+  validationPropertyWatchedAt,
+  validationFormatWatchedAt,
+  validationPropertyRate,
+  validationRate,
+ async (req, res) => {
+  const request = req.body;
+  const { id } = req.params;
+  
+  const talkersFile = await readFile();
+  const newTalkersFile = talkersFile.filter((talker) => talker.id !== Number(id));
 
-// });
+  request.id = Number(id);
+  newTalkersFile.push(request);
+
+  await writeFile(newTalkersFile);
+
+  res.status(200).json(request);
+});
 
 module.exports = router;
